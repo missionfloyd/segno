@@ -528,6 +528,28 @@ def make_email(to, cc=None, bcc=None, subject=None, body=None):
                                               subject=subject, body=body))
 
 
+def make_sms_data(to='', msg=''):
+    """\
+    Creates an smsto URI.
+
+    :param float to: The mobile number (recipient).
+    :param float msg: Message
+    :rtype: str
+    """
+    return 'smsto:{0}:{1}'.format(to, msg)
+
+
+def make_sms(to='', msg=''):
+    """\
+    Creates a QR code containing an smsto URI.
+
+    :param float to: The mobile number (recipient).
+    :param float msg: Message
+    :rtype: segno.QRCode
+    """
+    return segno.make_qr(make_sms_data(to, msg))
+
+
 def _make_epc_qr_data(name, iban, amount, text=None, reference=None, bic=None,
                       purpose=None, encoding=None):
     """\
